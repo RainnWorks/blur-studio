@@ -1,0 +1,25 @@
+{
+  "name": "blur-studio",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "bunx --bun vite",
+    "build": "tsc -b && bunx --bun vite build",
+    "preview": "bunx --bun vite preview",
+    "smoke": "bun scripts/smoke.mjs && bun scripts/verify-configs.mjs"
+  },
+  "dependencies": {
+    "leva": "^0.10.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "@vitejs/plugin-react-swc": "^3.9.0",
+    "playwright": "^1.60.0",
+    "typescript": "~5.8.3",
+    "vite": "^6.3.5"
+  }
+}

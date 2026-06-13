@@ -1,0 +1,252 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  height: 100%;
+  background: #101014;
+  color: #e8e8ee;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 13px;
+  overflow: hidden;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: #17171d;
+  border-bottom: 1px solid #26262e;
+  flex: 0 0 auto;
+}
+
+.brand {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin-right: 6px;
+}
+
+.toolbar button {
+  background: #26262e;
+  color: #e8e8ee;
+  border: 1px solid #34343e;
+  border-radius: 7px;
+  padding: 6px 12px;
+  font-size: 12.5px;
+  cursor: pointer;
+}
+
+.toolbar button:hover:not(:disabled) {
+  background: #30303a;
+}
+
+.toolbar button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.toolbar button.primary {
+  background: #2563eb;
+  border-color: #3b82f6;
+}
+
+.toolbar button.primary:hover:not(:disabled) {
+  background: #3b82f6;
+}
+
+.toolbar-group {
+  display: flex;
+  gap: 4px;
+  padding: 0 10px;
+  border-left: 1px solid #26262e;
+  border-right: 1px solid #26262e;
+}
+
+.toolbar button.icon {
+  padding: 5px 7px;
+  line-height: 0;
+  color: #c5c5d2;
+}
+
+.meta {
+  color: #9a9aa8;
+  font-size: 12px;
+  margin-left: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 320px;
+}
+
+.hint {
+  margin-left: auto;
+  color: #6c6c7a;
+  font-size: 11.5px;
+  /* leave room for the leva panel */
+  padding-right: 310px;
+  white-space: nowrap;
+}
+
+.presetbar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  background: #14141a;
+  border-bottom: 1px solid #26262e;
+  flex: 0 0 auto;
+}
+
+.presetbar-title {
+  color: #6c6c7a;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-right: 4px;
+}
+
+.presetbar button {
+  background: transparent;
+  color: #c5c5d2;
+  border: 1px solid #34343e;
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.presetbar button:hover:not(:disabled) {
+  background: #26262e;
+  border-color: #4a4a58;
+}
+
+.presetbar button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.presetbar-note {
+  margin-left: 8px;
+  color: #55555f;
+  font-size: 11px;
+}
+
+.stage {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at center, #16161c 0%, #101014 75%);
+}
+
+.canvas-wrap {
+  position: relative;
+  box-shadow: 0 12px 50px rgba(0, 0, 0, 0.55);
+}
+
+.canvas-wrap canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.dropzone {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  width: min(520px, 70%);
+  height: 260px;
+  border: 2px dashed #34343e;
+  border-radius: 16px;
+  background: transparent;
+  color: #9a9aa8;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.dropzone:hover {
+  border-color: #4a4a58;
+  color: #c5c5d2;
+}
+
+.dropzone strong {
+  font-size: 17px;
+  color: #e8e8ee;
+}
+
+/* glass box overlay */
+.glass-overlay {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  touch-action: none;
+}
+
+/* invisible until hovered; outline + handles only while selected */
+.glass-box {
+  position: absolute;
+  border: 1px solid transparent;
+  cursor: move;
+  touch-action: none;
+}
+
+.glass-box:hover {
+  border-color: rgba(255, 255, 255, 0.55);
+}
+
+.glass-box.selected {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.35);
+}
+
+.glass-box-label {
+  position: absolute;
+  top: 4px;
+  left: 8px;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.55);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+  user-select: none;
+  opacity: 0;
+  transition: opacity 0.12s;
+}
+
+.glass-box:hover .glass-box-label,
+.glass-box.selected .glass-box-label {
+  opacity: 1;
+}
+
+.glass-handle {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  background: #fff;
+  border: 1px solid #3b82f6;
+  border-radius: 2px;
+  z-index: 2;
+}
+
+.glass-handle-nw { top: -5px; left: -5px; }
+.glass-handle-n  { top: -5px; left: calc(50% - 4.5px); }
+.glass-handle-ne { top: -5px; right: -5px; }
+.glass-handle-e  { top: calc(50% - 4.5px); right: -5px; }
+.glass-handle-se { bottom: -5px; right: -5px; }
+.glass-handle-s  { bottom: -5px; left: calc(50% - 4.5px); }
+.glass-handle-sw { bottom: -5px; left: -5px; }
+.glass-handle-w  { top: calc(50% - 4.5px); left: -5px; }
