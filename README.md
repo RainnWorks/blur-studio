@@ -5,11 +5,11 @@
 ### Apple-style liquid-glass blur & refraction panels for any photo — right in your browser.
 
 [![License](https://img.shields.io/badge/license-MIT-000000?style=flat&labelColor=000000)](./LICENSE)
-[![Live demo](https://img.shields.io/badge/live-demo-2563eb?style=flat&labelColor=000000)](https://rainnworks.github.io/blur-studio/)
+[![Live demo](https://img.shields.io/badge/live-demo-2563eb?style=flat&labelColor=000000)](https://rainn.works/blur-studio)
 [![Built with Bun](https://img.shields.io/badge/built%20with-Bun%20%2B%20Vite-000000?style=flat&labelColor=000000)](https://bun.sh)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-000000?style=flat&labelColor=000000)](#contributing)
 
-<a href="https://rainnworks.github.io/blur-studio/">
+<a href="https://rainn.works/blur-studio">
   <img src="docs/hero.png" alt="Blur Studio editor — liquid-glass panels over a fjord photo" width="820" />
 </a>
 
@@ -36,7 +36,7 @@ bun run dev      # http://localhost:5173
 bun run build    # static site in dist/
 ```
 
-> Requires [Bun](https://bun.sh). Or just open the [live demo](https://rainnworks.github.io/blur-studio/).
+> Requires [Bun](https://bun.sh). Or just open the [live demo](https://rainn.works/blur-studio).
 
 ## Usage
 
