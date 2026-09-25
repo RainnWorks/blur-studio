@@ -1,8 +1,8 @@
 /**
  * Generates the README assets:
- *   docs/hero.png         – the editor in action (UI chrome + glass over a photo)
- *   docs/export.png       – a clean full-resolution export (the rendered result)
- *   docs/demo.gif         – a short interaction clip
+ *   assets/hero.png       – the editor in action (UI chrome + glass over a photo)
+ *   assets/export.png     – a clean full-resolution export (the rendered result)
+ *   assets/demo.gif       – a short interaction clip
  *
  * Requires the dev server running (bun run dev) and ffmpeg on PATH for the GIF.
  *
@@ -14,7 +14,7 @@ import { mkdirSync, rmSync } from 'node:fs';
 
 const URL = process.env.APP_URL ?? 'http://localhost:5173';
 const PHOTO = process.env.PHOTO ?? '/tmp/demo-1015.jpg';
-const OUT = 'docs';
+const OUT = 'assets';
 mkdirSync(OUT, { recursive: true });
 
 async function setKnob(page, id, value) {

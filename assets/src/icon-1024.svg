@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <title>Blur Studio — a glass panel blurring the lower part of a blue disc</title>
+  <defs>
+    <!-- The tile path is the shared RainnWorks one: 824px square, 100px margins. -->
+    <clipPath id="tile">
+      <path d="M285 100 H739 C865 100 924 159 924 285 V739 C924 865 865 924 739 924 H285 C159 924 100 865 100 739 V285 C100 159 159 100 285 100 Z"/>
+    </clipPath>
+    <clipPath id="glass">
+      <rect x="316" y="478" width="512" height="300" rx="96"/>
+    </clipPath>
+    <filter id="blur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="46"/>
+    </filter>
+  </defs>
+  <g clip-path="url(#tile)">
+    <rect x="100" y="100" width="824" height="824" fill="#0B0C14"/>
+    <!-- The photo: one sharp disc. -->
+    <circle cx="452" cy="440" r="222" fill="#6E8BFF"/>
+    <!-- Behind the glass: the tile and the same disc, blurred and shifted down. -->
+    <g clip-path="url(#glass)">
+      <rect x="100" y="100" width="824" height="824" fill="#0B0C14"/>
+      <circle cx="470" cy="462" r="222" fill="#6E8BFF" filter="url(#blur)"/>
+      <rect x="316" y="478" width="512" height="300" fill="#fff" fill-opacity="0.14"/>
+    </g>
+  </g>
+  <!-- The glass rim. -->
+  <rect x="316" y="478" width="512" height="300" rx="96" fill="none" stroke="#fff" stroke-width="20"/>
+</svg>

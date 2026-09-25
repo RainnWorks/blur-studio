@@ -1,90 +1,142 @@
-<div align="center">
+<p align="center">
+  <img src="assets/icon-1024.png" width="128" alt="Blur Studio icon">
+</p>
 
-# Blur Studio
+<h1 align="center">Blur Studio</h1>
 
-### Apple-style liquid-glass blur & refraction panels for any photo — right in your browser.
+<p align="center">Apple-style liquid-glass blur and refraction panels for any photo, in the browser.</p>
 
-[![License](https://img.shields.io/badge/license-MIT-000000?style=flat&labelColor=000000)](./LICENSE)
-[![Live demo](https://img.shields.io/badge/live-demo-2563eb?style=flat&labelColor=000000)](https://rainn.works/blur-studio)
-[![Built with Bun](https://img.shields.io/badge/built%20with-Bun%20%2B%20Vite-000000?style=flat&labelColor=000000)](https://bun.sh)
-[![PRs welcome](https://img.shields.io/badge/PRs-welcome-000000?style=flat&labelColor=000000)](#contributing)
+![The Blur Studio editor: a fjord photo with three glass panels on it, a frosted one, a clear lens and a pill, beside the settings panel for the selected one](assets/hero.png)
 
-<a href="https://rainn.works/blur-studio">
-  <img src="docs/hero.png" alt="Blur Studio editor — liquid-glass panels over a fjord photo" width="820" />
-</a>
+## Getting started
 
-</div>
+1. **Open [rainn.works/blur-studio](https://rainn.works/blur-studio/)** in a browser with WebGL2.
+2. **Load a photo.** Drop it in the middle of the page, paste it, or click **Open image…**. A glass panel appears in the middle of the photo.
+3. **Pick a look.** Click a preset such as **Frosted** or **Clear lens**. Drag the panel where you want it, and pull its handles to resize it.
+4. **Export.** Click **Export PNG**. Blur Studio saves the photo at its full size, as `<photo name>-glass.png`.
 
-## Features
+Your photo stays in your browser. Blur Studio has no server and uploads nothing.
 
-- ✨ **Real liquid glass** — physically-modelled refraction with chromatic dispersion, fresnel rim, glare and tint, running as WebGL2 shaders
-- 🫧 **Multiple panels, each its own material** — stack as many as you like; glass over glass refracts correctly
-- 🎚️ **Presets** — one-click frosted, heavy-frost, clear-lens and highlight looks, all computed from the panel's size
-- 🖱️ **Direct manipulation** — drag, resize from 8 handles, nudge with arrows, align to edges/center, duplicate with ⌘D
-- 🖼️ **Any photo** — drop, paste, or open; works from a thumbnail to a 40-megapixel original
-- 📐 **Pixel-perfect export** — renders at the image's **original resolution**, so what you preview is exactly what you save
-- ⚡ **Instant** — Bun + Vite dev loop, zero backend, everything runs on your GPU
-
-## Quick start
+To run your own copy, you need [Bun](https://bun.sh):
 
 ```sh
 bun install
 bun run dev      # http://localhost:5173
 ```
 
-```sh
-bun run build    # static site in dist/
-```
+## Use
 
-> Requires [Bun](https://bun.sh). Or just open the [live demo](https://rainn.works/blur-studio).
+![Dragging a glass panel across a photo and switching between presets](assets/demo.gif)
 
-## Usage
+Add as many panels as you like. Each one has its own settings. Panels are drawn in
+the order you add them, and the number on each shows that order. A later panel sits
+on top, and it bends and blurs the panels under it.
 
-<div align="center">
-  <img src="docs/demo.gif" alt="Dragging a glass panel and switching presets" width="760" />
-</div>
+| To | Do this |
+|---|---|
+| Add a panel | **+ Add glass**, or double-click the photo where you want it |
+| Select a panel | Click it. Click the photo, or press Esc, to select none |
+| Move | Drag it, or use the arrow keys: 1 photo pixel, or 10 with Shift |
+| Resize | Drag one of its 8 handles |
+| Line up | The six align buttons put it against an edge or the centre of the photo |
+| Copy | ⌘D, or Ctrl+D |
+| Delete | Backspace or Delete |
 
-1. **Load a photo** — drop it on the window, paste from the clipboard, or hit *Open image…*
-2. **Add glass** — *+ Add glass*, double-click the canvas, or pick a **preset** from the bar
-3. **Shape it** — drag to move, pull the handles to resize, use the align buttons to snap to edges/center
-4. **Tune it** — the right-hand panel edits the *selected* bubble: blur, refraction, fresnel, glare, tint, shadow
-5. **Export** — renders at the photo's native size and downloads a PNG or JPEG
+The presets set a panel's whole look. They work out their sizes from the panel and
+the photo, so they suit a small chip and a full-width bar alike. With a panel
+selected, a preset changes it. With none selected, a preset adds a new panel.
 
-| Shortcut | Action |
-| --- | --- |
-| `double-click` | add a panel where you click |
-| `drag` / handles | move / resize |
-| `← ↑ → ↓` (`⇧` ×10) | nudge |
-| `⌘D` / `Ctrl+D` | duplicate selected |
-| `⌫` / `Delete` | remove selected |
-| `Esc` | deselect |
+| Preset | Look |
+|---|---|
+| Frosted | Classic frosted glass |
+| Heavy frost | A strong blur, for privacy |
+| Subtle veil | A barely visible blur |
+| Clear lens | No blur, just refraction |
+| Highlight | Brightens and lifts an area |
+| Dim panel | Darkens what is behind, for captions |
+| Bubble | An orb with strong colour fringes |
 
-<div align="center">
-  <img src="docs/export.jpg" alt="A full-resolution export on a second photo" width="760" />
-  <br />
-  <sub>A full-resolution export — the same pipeline runs the on-screen preview and the saved file.</sub>
-</div>
+The settings panel on the right edits the selected panel:
+
+| Group | Settings |
+|---|---|
+| Blur | Radius, and whether the rim is blurred too |
+| Shape | Corner size, corner roundness, and **scale w/ size** |
+| Refraction | Thickness, index and dispersion |
+| Effect | Tint colour and strength |
+| Fresnel | The bright rim: range, hardness and strength |
+| Glare | The highlight: range, hardness, strength, convergence, opposite side and angle |
+| Shadow | Softness, strength and offset |
+| Export | PNG or JPEG, and the JPEG quality (0.95 at first) |
+
+With **scale w/ size** on, resizing a panel also scales its thickness, rim, glare and
+shadow. The blur radius stays the same. With no panel selected, the settings you
+change become the starting point for the next new panel.
+
+Open a new photo and the panels stay, scaled to fit the new photo.
+
+![A full-size export of a valley photo, with a dark frosted panel on the left and a clear lens with colour fringes on the right](assets/export.jpg)
 
 ## How it works
 
-Blur Studio is a small, layered WebGL2 compositor. Each panel is drawn in its own pass — **shadow → separable Gaussian blur → glass** — over the scene composited so far, so every bubble carries an independent material and stacked panels refract one another correctly. The glass itself is a signed-distance-field of a rounded superellipse, used to drive refraction offset, a thickness-based edge profile, an LCH-space glare highlight, and a fresnel rim.
+![The photo goes through a shadow, blur and glass pass for each panel in order, and the same passes make both the preview and the export](assets/how-it-works.png)
 
-Geometry and length-like settings are stored in **image pixels** and the renderer is resolution-independent (`u_dpr` = device pixels per image pixel, `1.0` at export) — which is why the live preview and the full-resolution export are the same picture. Gaussian weights are computed in-shader, and very large radii blur at a reduced resolution and upsample, keeping big kernels fast even on 20-megapixel-plus images.
+Blur Studio draws on your GPU with WebGL2. It starts from the photo, then draws each
+panel in three passes: its shadow, a Gaussian blur of what is behind it, and the
+glass. The glass pass bends that background as a lens with rounded corners would,
+splits the colours a little at the edges, and adds the rim, the glare and the tint.
+Each panel draws over everything before it, which is why glass on glass looks right.
 
-## Contributing
+Every size, position and length is kept in photo pixels, not screen pixels. The
+preview draws the photo at the size of the window. The export runs the same passes
+again at the photo's own size, so the file matches what you saw. Blurs wider than
+80 pixels, at the size being drawn, run at half size or smaller and are scaled
+back up. This keeps a big blur fast on a large photo.
 
-Issues and PRs are welcome. To verify changes against a real browser:
+## Limits
+
+- **It needs WebGL2.** Without it the page stays blank.
+- **Nothing is saved.** Reload or close the tab and your panels are gone. There is no undo.
+- **The export size has a ceiling.** It is the largest image your GPU can draw. A bigger photo is exported scaled down to fit.
+- **The export has no transparency.** Transparent parts of a PNG come out opaque.
+- **One photo at a time.** Dropping or pasting several files loads only the first.
+
+## Build from source
+
+You need [Bun](https://bun.sh).
 
 ```sh
-bun run dev                  # in one terminal
-bun scripts/smoke.mjs        # load → place panels → export, checks for errors
-bun scripts/screenshots.mjs  # regenerate the README assets (needs ffmpeg)
+bun install
+bun run dev      # http://localhost:5173
+bun run build    # dist/blur-studio/
 ```
+
+The build expects to be served under `/blur-studio/`, so it lands in
+`dist/blur-studio/`. To try it, serve `dist/` and open `/blur-studio/`:
+
+```sh
+python3 -m http.server -d dist 8080   # http://localhost:8080/blur-studio/
+```
+
+The tests drive the app in headless Chromium through Playwright. Start
+`bun run dev`, then in a second terminal:
+
+```sh
+bunx playwright install chromium   # once
+bun run smoke
+```
+
+`bun run smoke` loads a photo, adds panels with different settings, and checks that
+the export downloads at the photo's full size with no page errors. How to rebuild
+the images in this README is in [`assets/src/README.md`](assets/src/README.md).
 
 ## Credits
 
-The glass shader model is adapted from [**liquid-glass-studio**](https://github.com/iyinchao/liquid-glass-studio) by Charles Yin (MIT), reworked into a layered, per-panel, resolution-independent compositor with size-aware presets and full-resolution export. Color-space conversions are from [GLSL-Color-Functions](https://github.com/Rachmanin0xFF/GLSL-Color-Functions) (MIT). Demo photos via [Lorem Picsum](https://picsum.photos).
+The glass shader is adapted from [liquid-glass-studio](https://github.com/iyinchao/liquid-glass-studio)
+by Charles Yin (MIT). The colour-space conversions are from
+[GLSL-Color-Functions](https://github.com/Rachmanin0xFF/GLSL-Color-Functions) (MIT).
+The demo photos are from [Lorem Picsum](https://picsum.photos).
 
 ## License
 
-[MIT](./LICENSE) © RainnWorks
+[MIT](LICENSE). Copyright RainnWorks.
